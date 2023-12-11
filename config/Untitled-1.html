@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        initialDate: new Date(),
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        dayClick:function(info){
+          console.log(info);
+          $('#eventModel').modal("show");
+        }
+    });
+    calendar.render();
+});
+
+
+    </script>
+  </head>
+  <body>
+    <div id='calendar'></div>
+
+  <div class="modal fade" id="eventModel" tabindex="-1" aria-labelledby="exampleModelLabel" 
+  aria-hidden="true">
+<div class="modal-dialog">
+  <div class=" "model-content">
+    <div class="model-header">
+      <div class=" "> 
+
+
+
+
+      </div>
+
+
+
+ </div> 
+</div>
+  </body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+</head>
+
+<body>
+    <div id='calendar'></div>
+
+    <div class="modal fade" id="eventModel" tabindex="-1" aria-labelledby="exampleModelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModelLabel">Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input type="hidden" id="eventId">
+                        <label for="title">Title</label>
+                        <input type="text" placeholder="Enter Title" class="form-control" id="title" name="title"
+                            value="" required>
+                    </div>
+                    <div>
+                        <label for="is_all_day">All Day</label>
+                        <input type="checkbox" id="is_all_day" checked name="is_all_day" value="" required>
+                    </div>
+                    <div>
+                        <label for="startDateTime">Start Date/time</label>
+                       
+                        <input type="text" placeholder="Select date" readonly class="form-control" id="startDateTimePicker"
+                            name="startDateTime" value="" required>
+                    </div>
+                    <div>
+                        <label for="endDateTime">End Date/time</label>
+                     
+                        <input type="text" placeholder="Select date" readonly class="form-control" id="endDateTimePicker"
+                            name="endDateTime" value="" required>
+                    </div>
+                    <div>
+                        <label for="description">Description</label>
+                        <textarea placeholder="Enter Description" class="form-control" id="description"
+                            name="description"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script type="module" src ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+   <script type="module">
+    // <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                initialDate: new Date(),
+                headerToolbar: {
+                    left: 'prev,next,today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                dateClick: function (info) {
+                    console.log(info);
+                    // initializeStartDateEndDateFormat('Y-m-d', true);
+                    $('#eventModel').modal("show");
+
+                }
+            })
+
+            calendar.render();
+
+            $('#startDateTimePicker, #endDateTimePicker').datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+            $('#is_all_day'),change(function(){
+              let is_all_day = $(this).prop('checked');
+              if(is_all_day) {
+                let start=$('#startDateTimePicker').val().slice(0,10);
+                $('#endDateTimePicker').val(endDateTimePicker);
+                initializeStartDateEndDateFormat("Y-m-d",is_all_day)
+              }
+              else {
+                  let start= $('#startDatetimePicker').val().slice(0,10);
+                  $('#endDatetimePicker').val(endDateTimePicker + "00:30");
+                  initializeStartDateEndDateFormat("Y-m-d",is_all_day)
+            });
+        });
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+//    list old 
+
+{{-- <!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+</head>
+
+<body>
+    <div id='calendar'></div>
+
+    <div class="modal fade" id="eventModel" tabindex="-1" aria-labelledby="exampleModelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModelLabel">Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input type="hidden" id="eventId">
+                        <label for="title">Title</label>
+                        <input type="text" placeholder="Enter Title" class="form-control" id="title" name="title" value="" required>
+                    </div>
+                    <div>
+                        <label for="is_all_day">All Day</label>
+                        <input type="checkbox" id="is_all_day" checked name="is_all_day" value="" required>
+                    </div>
+                    <div>
+                        <label for="startDateTime">Start Date/time</label>
+                        <input type="text" placeholder="Select date" readonly class="form-control" id="startDateTimePicker" name="startDateTime" value="" required>
+                    </div>
+                    <div>
+                        <label for="endDateTime">End Date/time</label>
+                        <input type="text" placeholder="Select date" readonly class="form-control" id="endDateTimePicker" name="endDateTime" value="" required>
+                    </div>
+                    <div>
+                        <label for="description">Description</label>
+                        <textarea placeholder="Enter Description" class="form-control" id="description" name="description"></textarea>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="button" class="btn btn-primary" id="submitEvent">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
+    {{-- <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.js'></script> --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                initialDate: new Date(),
+                headerToolbar: {
+                    left: 'prev,next,today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                selectable: true, // Allow selecting multiple days
+                select: function (info) {
+                    
+                    $('#startDateTimePicker').val(info.startStr);
+                    $('#endDateTimePicker').val(info.endStr);
+                    $('#eventModel').modal("show");
+                },
+            });
+            calendar.render();
+            $('#startDateTimePicker, #endDateTimePicker').datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+
+            $('#is_all_day').change(function () {
+                let is_all_day = $(this).prop('checked');
+                if (is_all_day) {
+                    let start = $('#startDateTimePicker').val().slice(0, 10);
+                    $('#endDateTimePicker').val(start);
+                } else {
+                    let start = $('#startDateTimePicker').val().slice(0, 10);
+                    $('#endDateTimePicker').val(start + "T00:30");
+                }
+            });
+
+            $('#submitEvent').click(function () {
+                submitEventFormData();
+            });
+
+            function modalReset() {
+                $("#title").val("");
+                $("#description").val("");
+                $("#eventId").val("");
+                $('#dateEvent').val("");
+            }
+
+            function submitEventFormData() {
+                let eventId = $('#eventId').val();
+                let url = '{{ route('events.store') }}';
+                let postData = {
+                    start: $('#startDateTimePicker').val(),
+                    end: $('#endDateTimePicker').val(),
+                    title: $('#title').val(),
+                    description: $('#description').val(),
+                    is_all_day: $('#is_all_day').prop('checked') ? 1 : 0
+                };
+                if (eventId) {
+                    url = '{{ url('/') }}' + '/events/' + eventId;
+                    postData._method = "PUT";
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'json',
+                    data: postData,
+                    success: function (result) {
+                        if (result.success) {
+                            calendar.refetchEvents();
+                            $('#eventModel').modal('hide');
+                        } else {
+                            alert("Something went wrong!");
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html> --}}
+
+
+
+blade 3
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.5/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css"
+    integrity="sha512-bYPO5jmStZ9WI2602V2zaivdAnbAhtfzmxnEGh9RwtlI00I9s8ulGe4oBa5XxiC6tCITJH/QG70jswBhbLkxPw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <center><h1>fullCalendar</h1></center><hr>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="eventModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModelLabel">Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input type="hidden" id="eventId">
+                        <label for="title">Title</label>
+                        <input type="text" placeholder="Enter Title" class="form-control" id="title" name="title" value="" required>
+                    </div>
+                    <div>
+                        <label for="is_all_day">All Day</label>
+                        <input type="checkbox" id="is_all_day" checked name="is_all_day" value="" required>
+                    </div>
+                    <div>
+                        <label for="startDateTime">Start Date/time</label>
+                        <input type="text" placeholder="Select date" readonly class="form-control" id="startDateTimePicker" name="startDateTime" value="" required>
+                    </div>
+                    <div>
+                        <label for="endDateTime">End Date/time</label>
+                        <input type="text" placeholder="Select date" readonly class="form-control" id="endDateTimePicker" name="endDateTime" value="" required>
+                    </div>
+                    <div>
+                        <label for="description">Description</label>
+                        <textarea placeholder="Enter Description" class="form-control" id="description" name="description"></textarea>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="button" class="btn btn-primary" id="submitEvent">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.5/main.min.js" referrerpolicy="no-referrer"></script>
+    
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                initialDate: new Date(),
+                headerToolbar: {
+                    left: 'prev,next,today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                dateClick: function (info) {
+                    console.log(info);
+                    initializeStartDateEndDateFormat('Y-m-d',true);
+                    $('#eventModel').modal('show');
+                }
+            })
+            calendar.render();
+            $('#is_all_day').change(function () {
+            let is_all_day = $(this).prop('checked');
+            if (is_all_day) {
+                let start = $('#startDateTime').val().slice(0, 10);
+                $('#startDateTime').val(start);
+                let endDateTime = $('#endDateTime').val().slice(0, 10);
+                $('#endDateTime').val(endDateTime);
+                initializeStartDateEndDateFormat('Y-m-d', is_all_day);
+            } 
+            
+            else {
+                let start = $('#startDateTime').val().slice(0, 10);
+                $('#startDateTime').val(start + '00:00');
+                let endDateTime = $('#endDateTime').val().slice(0, 10);
+                $('#endDateTime').val(endDateTime + '00:30');
+                initializeStartDateEndDateFormat('Y-m-d H:i', is_all_day);
+            }
+        })
+    })
+    function initializeStartDateEndDateFormat(format, allDays) {
+    let timePicker = !allDays; 
+    $('#startDateTimePicker').datetimepicker({
+        format: format,
+        timePicker: timePicker
+    });
+    $('#endDateTimePicker').datetimepicker({
+        format: format,
+        timePicker: timePicker
+    });
+}
+
+    </script>
+</body>
+
+</html>
